@@ -18,7 +18,7 @@
     
 ####2. Installing Oracle Database and Creating a Database 
 
-	[Installation on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/install/install.htm) 
+[Installation on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/install/install.htm) 
         
 ####3. Getting Started with Database Administration    
 
@@ -30,7 +30,7 @@
     
 ####5. Managing the Oracle Instance      
 
-	[Instances on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/instance/instance.htm)
+[Instances on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/instance/instance.htm)
     
 ####6. Managing Database Storage Structures      
 
