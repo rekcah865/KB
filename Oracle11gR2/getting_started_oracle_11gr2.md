@@ -24,8 +24,29 @@
 * [2 Day + PHP Developer's Guide](http://docs.oracle.com/cd/E11882_01/appdev.112/e10811/toc.htm)
 * [2 Day + .NET Developer's Guide for Microsoft Windows](http://docs.oracle.com/cd/E11882_01/appdev.112/e10767/toc.htm)
 
+#### New to Oracle Database 11g
+*Information you need for the latest release*
+
+*[New Features Guide]()	
+*[Readme]()	
+
 #### Supporting Documentation
 *Supporting documentation treats advanced topics. In general, the 2 Day + books refer you to these topics when needed*
 
-* 
+* [Concepts]()
+* [Administrator's Guide]()	
+* [Reference]()	
+* [SQL Language Reference]()	
+* [Performance Tuning Guide]()	
+* [Error Messages]()
 
+#### Upgrade Information
+*If you are familiar with earlier Oracle releases and are moving to Oracle Database 11g, these books describe the new features, and explain how to upgrade your database*
+
+* [Upgrade Guide]()		
+* [New Features Guide]()		
+
+#### License Informatio	
+*This book explains how certain Oracle Database features are licensed*
+
+* [Licensing Information]()	
