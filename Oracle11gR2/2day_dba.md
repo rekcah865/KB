@@ -6,7 +6,7 @@
 它教你如何操作常见的管理任务以保证数据库运行，包括如何进行基本的故障处理和性能监视  
     
 
-1. Introduction  
+####1. Introduction  
 
     Oracle组成: 数据库软件、数据库文件、实例（后台进程、共享内存区域）、服务器进程、Net软件和监听器
     
@@ -16,46 +16,39 @@
     
     数据库管理工具：GUI, DBCA, DBUA, NETCA, OEM Database Control
     
-2. Installing Oracle Database and Creating a Database 
+####2. Installing Oracle Database and Creating a Database 
 
-[Installation]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/install/install.htm)
+	[Installation on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/install/install.htm) 
         
-3. Getting Started with Database Administration    
+####3. Getting Started with Database Administration    
 
-[Getting Started with Oracle Enterprise Manager]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/gettingstarted/gettingstarted.htm)
+	[Getting Started with Oracle Enterprise Manager on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/gettingstarted/gettingstarted.htm)
     
-4. Configuring the Network Environment     
+####4. Configuring the Network Environment     
 
-[Networking]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/network/network.htm)
+	[Networking on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/network/network.htm)
     
-5. Managing the Oracle Instance      
+####5. Managing the Oracle Instance      
 
-[Instances]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/instance/instance.htm)
+	[Instances on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/instance/instance.htm)
     
-6. Managing Database Storage Structures      
+####6. Managing Database Storage Structures      
 
-[Storage]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/storage/storage.htm)
+	[Storage on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/storage/storage.htm)
     
-7. Administering User Accounts and Security      
+####7. Administering User Accounts and Security      
 
-[User]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/users/users.htm)
+	[User on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/users/users.htm)
     
-8. Managing Schema Objects    
-9. Performing Backup and Recovery    
+####8. Managing Schema Objects    
+####9. Performing Backup and Recovery    
 
-[Backup and Recovery]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/backup/backup.htm)
+	[Backup and Recovery on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/backup/backup.htm)
     
-10. Monitoring and Tuning the Database      
-11. Investigating, Reporting, and Resolving Problems      
-12. Managing Oracle Database Software      
-A. Administering Oracle Automatic Storage Management      
+####10. Monitoring and Tuning the Database      
+####11. Investigating, Reporting, and Resolving Problems      
+####12. Managing Oracle Database Software      
 
-[Oracle Automatic Storage Management]
-(http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/asm/asm.htm)
+####A. Administering Oracle Automatic Storage Management      
+
+	[Oracle Automatic Storage Management  on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/asm/asm.htm)
