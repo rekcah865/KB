@@ -22,11 +22,11 @@
         
 ####3. Getting Started with Database Administration    
 
-	[Getting Started with Oracle Enterprise Manager on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/gettingstarted/gettingstarted.htm)
+[Getting Started with Oracle Enterprise Manager on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/gettingstarted/gettingstarted.htm)
     
 ####4. Configuring the Network Environment     
 
-	[Networking on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/network/network.htm)
+[Networking on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/network/network.htm)
     
 ####5. Managing the Oracle Instance      
 
@@ -34,16 +34,16 @@
     
 ####6. Managing Database Storage Structures      
 
-	[Storage on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/storage/storage.htm)
+[Storage on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/storage/storage.htm)
     
 ####7. Administering User Accounts and Security      
 
-	[User on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/users/users.htm)
+[User on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/users/users.htm)
     
 ####8. Managing Schema Objects    
 ####9. Performing Backup and Recovery    
 
-	[Backup and Recovery on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/backup/backup.htm)
+[Backup and Recovery on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/backup/backup.htm)
     
 ####10. Monitoring and Tuning the Database      
 ####11. Investigating, Reporting, and Resolving Problems      
@@ -51,4 +51,4 @@
 
 ####A. Administering Oracle Automatic Storage Management      
 
-	[Oracle Automatic Storage Management  on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/asm/asm.htm)
+[Oracle Automatic Storage Management  on OBE](http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/11g/r2/2day_dba/asm/asm.htm)
