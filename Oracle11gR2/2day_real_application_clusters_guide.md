@@ -52,7 +52,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	- OS认证
 	- 硬件要求
 	- 共享存储: 除数据、控制、重做日志、参数文件，Clusterware需要Voting Disks(3×300MB) OCR(3*300MB)来实现出色的扩展性和高可用性
-	- 网络要求： private interconnect
+	- 网络要求： private interconnect - 私网IP
 	- IP地址要求： 
 		- 可以用GNS(Grid Naming Service)和DHCP(Dynamic Host Configuration Protocol)来实现虚拟IP  
 		- 典型安装： DNS中要求-每个节点需要一个公有IP和一个虚拟IP，集群需要三个SCAN(single client access name)地址
@@ -82,6 +82,39 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 		- 配置磁盘持久性 - udev跟ASMLib区别
 
 ####3 Installing Oracle Grid Infrastructure and Oracle Real Application Clusters
+
+* 准备Oracle Media安装文件 
+* 验证MOS凭证
+* 安装Oracle Grid Infrastructure for a Cluster软件
+	- 配置操作系统环境
+	- 关于CVU Fixup脚本 （runfixup.sh）
+	- 使用OUI安装Oracle Grid Infrastrcture for a Cluster
+	- 完成Oracle Clusterware配置
+* 安装Oracle Database软件和创建数据库
+	- 配置操作系统环境
+	- 创建额外的ASM磁盘组
+	- OUI安装Oracle RAC软件
+	- 验证RAC数据库安装
+* 执行Postinstallation任务
+	- 验证Oracle Clusterware安装
+	- 使用DBCA创建数据库
+	- 备份安装文件
+	- 验证Enterprise Manager操作
+	- 下载和安装RDBMS补丁
+	- 配置用户帐户
+* 关于转换Oracle数据库到RAC数据库
+	- 数据库转换准备
+		- 存在的数据库和目标数据库必须是同版本同平台
+		- 硬件和OS必须是被认证的
+		- 共享存储被配置给数据库
+		- 验证对应用程序，以便能跟RAC数据库配合使用
+		- 转换之前backup程序必须是可用哦的
+		- 对于RAC归档环境，归档日志要求有thread number
+		- RAC中所有实例的归档日志文件能从介质恢复
+	- 使用Grid Control转换数据库
+	- 使用rconfig转换数据库
+	- 转换RAC数据库到RAC One Node数据库
+
 ####4 Administering Database Instances and Cluster Databases
 ####5 Administering Oracle Clusterware Components
 ####6 Administering Backup and Recovery
