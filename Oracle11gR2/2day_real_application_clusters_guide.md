@@ -107,8 +107,8 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 		- 存在的数据库和目标数据库必须是同版本同平台
 		- 硬件和OS必须是被认证的
 		- 共享存储被配置给数据库
-		- 验证对应用程序，以便能跟RAC数据库配合使用
-		- 转换之前backup程序必须是可用哦的
+		- 检查应用程序，以便能跟RAC数据库配合使用
+		- 转换之前保证backup程序必须是可用
 		- 对于RAC归档环境，归档日志要求有thread number
 		- RAC中所有实例的归档日志文件能从介质恢复
 	- 使用Grid Control转换数据库
@@ -116,6 +116,63 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	- 转换RAC数据库到RAC One Node数据库
 
 ####4 Administering Database Instances and Cluster Databases
+
+	可用Enterprise Manager Database Control或者Grid Control管理RAC数据库
+	本章主要是解释怎么开关数据库组件和管理RAC中的参数文件
+
+* 关于Oracle RAC数据库管理
+	- 可以增加更多节点到RAC环境来增加数据库集群的可用性(availability)和可靠性(reliability)
+	- RAC数据库包括三部分： 结点、共享存储和Oracle Clusterware
+	- RAC和单实例数据库在很多管理任务上是一样的
+	
+* 关于Oracle RAC One Node数据库管理
+	- RAC One Node是个运行在RAC中一个节点上的单实例，可以在线重分配实例到另外一个节点上
+	- 候选节点被监控着，确保对能被One Node数据库可以切换
+	
+* 关于使用Enterprise Manager管理Oracle RAC
+	- Enterprise Management Grid Control可以管理整个RAC环境，而非仅仅RAC数据库
+
+* 启动和停止Oracle RAC数据库和数据库实例
+	- Enterprise Manager: http://hostname:portnumber/em
+	- SQL*PLUS or SRVCTL
+
+* 关于Oracle RAC Initialization参数
+	跟单实例数据库参数基本上差不多，请注意以下的差异
+		- RAC有特定于集群的参数
+		- 每个实例一样的参数用 *. 标识
+		- 每个实例上不一样的参数用实例名标识
+	- 有关配置初始化参数的Oracle RAC数据库
+		初始化参数文件(pfile)和服务器参数文件(spfile)
+		- 所有实例必须相同的参数
+			CLUSTER_DATABASE COMPATIBLE CONTROL_FILES DB_BLOCK_SIZE DB_DOMAIN DB_FILES DB_NAME 
+			DB_RECOVERY_FILE_DEST DB_RECOVERY_FILE_DEST_SIZE DB_UNIQUE_NAME DML_LOCKS(0) INSTANCE_TYPE(RDBMS/ASM) 
+			PARALLEL_EXECUTION_MESSAGE_SIZE REMOTE_LOGIN_PASSWORDFILE RESULT_CACHE_MAX_SIZE UNDO_MANAGEMENT
+		- 所有实例必须唯一的参数
+			CLUSTER_INTERCONNECTS INSTANCE_NUMBER
+			ROLLBACK_SEGMENTS(AUTO) UNDO_TABLESPACE(AUTO)			
+		- 所有实例应该相同的参数
+			ARCHIVE_LAG_TARGET CONTROL_MANAGEMENT_PACK_ACCESS DIAGNOSTIC_DEST
+			LICENSE_MAX_USERS LOG_ARCHIVE_FORMAT REDO_TRANSPORT_USER
+			SPFILE TRACE_ENABLED UNDO_RETENTION
+		- 关于SERVICE_NAMES参数
+			- 指定客户端可以连接到该实例的一个或多个名称，实例对于监听器注册其服务
+			- RAC数据库不应该直接修改此参数，可用EM或SRVCTL更改服务（自动生效)
+	- 对于Oracle RAC数据库编辑初始化参数设置
+		- EM "server" -> "Initialization Parameters"	
+			- current Tab
+			- spfile Tab
+	- 有关Oracle真正应用集群服务器参数文件
+		- 推荐使用spfile，存放在ASM DG或cluster文件系统
+		- 可以通过RMAN备份spfile
+	
+* 关于Oracle RAC的存储管理
+	- 关于Oracle RAC的UNDO管理
+	...
+	- Oracle RAC中的ASM
+	...
+	- 管理Oracle RAC的重做日志
+	...
+
 ####5 Administering Oracle Clusterware Components
 ####6 Administering Backup and Recovery
 ####7 Managing Database Workload Using Services
