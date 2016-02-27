@@ -1,5 +1,5 @@
 
 
 
-* [Go入门指南](https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/eBook/directory.md) - The Way to GO
+* [Go入门指南](https://github.com/Unknwon/the-way-to-go_ZH_CN/eBook/directory.md) - The Way to GO
 * [Go Web 编程](https://github.com/astaxie/build-web-application-with-golang/tree/master/zh) - 
