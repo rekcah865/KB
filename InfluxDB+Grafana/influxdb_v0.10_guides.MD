@@ -143,7 +143,7 @@
 	- 自动汇总10秒钟的原始数据到30分钟的数据
 	- 保持30分钟的数据永不删除
 	```
-	- 准备数据数据
+	- 准备数据库
 		- 创建新的default RP
 		```
 		> CREATE RETENTION POLICY two_hours ON food_data DURATION 2h REPLICATION 1 DEFAULT
@@ -154,9 +154,9 @@
 		two_hours	  2h0m0s		   1		        true
 		```
 		- 创建CQ
-			```
-			> CREATE CONTINUOUS QUERY cq_30m ON food_data BEGIN SELECT mean(website) AS mean_website,mean(phone) AS mean_phone INTO food_data."default".downsampled_orders FROM orders GROUP BY time(30m) END
-			```
+		```
+		> CREATE CONTINUOUS QUERY cq_30m ON food_data BEGIN SELECT mean(website) AS mean_website,mean(phone) AS mean_phone INTO food_data."default".downsampled_orders FROM orders GROUP BY time(30m) END
+		```
 	- 写/查看数据
 		```
 		> SELECT * FROM orders LIMIT 5
@@ -183,9 +183,9 @@
 
 ### Hardware Sizing Guidelines
 
-	本指南提供了InfluxDB一般硬件建议和解决有关硬件大小一些常见问题。
-	这些建议只对tsm1存储引擎。实例仍在运行未转化b1或BZ1分片可以具有不同的性能特性。
-	见InfluxDB0.9评估指南了解更多详情。
+本指南提供了InfluxDB一般硬件建议和解决有关硬件大小一些常见问题。
+这些建议只对tsm1存储引擎。实例仍在运行未转化b1或BZ1分片可以具有不同的性能特性。
+见InfluxDB0.9评估指南了解更多详情。
 
 * 单节点通用硬件指导
 * 什么时候需要更多内存
