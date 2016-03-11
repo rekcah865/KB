@@ -1,4 +1,4 @@
-# (Beginner’s Guide)[http://nginx.org/en/docs/beginners_guide.html]
+# [Beginner’s Guide](http://nginx.org/en/docs/beginners_guide.html)
 
 本指南介绍如何启动和停止nginx的，并重新加载它的配置，解释了配置文件的结构，
 并介绍如何设置nginx使其服务静态内容，如何配置Nginx作为代理服务器，以及如何将其与连接FastCGI应用
