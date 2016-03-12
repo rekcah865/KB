@@ -36,7 +36,6 @@
 	- Building from Source
 	- Configuration
 	- LDAP Integration
-	- 
 * [User Guides](grafana_user_guides.MD)
 	- Basic Concepts
 	- Getting Started
