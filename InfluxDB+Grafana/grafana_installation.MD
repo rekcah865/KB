@@ -237,11 +237,8 @@ Grafana后端有许多可在.ini配置文件中指定或使用环境变量指定
   - enabled
   - path
 
-
-```
-```
-
-
-
-
-
+### [LDAP Integration](http://docs.grafana.org/installation/ldap/)
+### [Provisioning](http://docs.grafana.org/installation/provisioning/)
+### [Performance tips](http://docs.grafana.org/installation/performance/)
+### [Troubleshooting](http://docs.grafana.org/installation/troubleshooting/)
+### [Migrating from v1.x to v2.x](http://docs.grafana.org/installation/migrating_to2/)
