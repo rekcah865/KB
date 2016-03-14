@@ -1,4 +1,4 @@
-	# [2 Day + Data Replication and Integration Guide](http://docs.oracle.com/cd/E11882_01/server.112/e17516/toc.htm)
+# [2 Day + Data Replication and Integration Guide](http://docs.oracle.com/cd/E11882_01/server.112/e17516/toc.htm)
 
 ###简介:
 
@@ -67,22 +67,22 @@ Oracle数据库使用的数据库链接，使一个数据库的用户访问远�
 
 * About Accessing and Modifying Information in Multiple Databases
 
-当连接到Oracle数据库，您可以访问和修改其他Oracle数据库和非Oracle数据库的信息。
-当在两个或多个数据库的信息显示为在单个数据库中，它被称为federation(联合)。 
-Federation leaves信息仍然在原来的位置，在那里它被保持和更新。
-多个数据源的出现，使得不同类型的数据库在一个统一视图被呈现给被集成到一个单一的虚拟数据库。
-联合配置可以让所有的数据库看起来像一个虚拟数据库，应用程序和最终用户，从而减少了一些在分布式系统的复杂性。 
+	当连接到Oracle数据库，您可以访问和修改其他Oracle数据库和非Oracle数据库的信息。
+	当在两个或多个数据库的信息显示为在单个数据库中，它被称为federation(联合)。 
+	Federation leaves信息仍然在原来的位置，在那里它被保持和更新。
+
+	多个数据源的出现，使得不同类型的数据库在一个统一视图被呈现给被集成到一个单一的虚拟数据库。
+	联合配置可以让所有的数据库看起来像一个虚拟数据库，应用程序和最终用户，从而减少了一些在分布式系统的复杂性。 
+
 	- About Distributed SQL	
-	```
 	可以使用分布式SQL应用程序和用户查询或修改多个数据库中的信息与单个的SQL语句。 
 	分布式SQL包含以下内容： distributed queries（其访问数据）和distributed transactions（其修改的数据）。 
 	在分布式事务中，two-phase commit mechanism可以确保数据通过确保事务中的所有语句提交或在参与分布式事务的每个数据库回滚作为一个单元的完整性。
 
 	当应用程序或用户尝试提交分布式事务，到应用程序或用户所连接的数据库称为global coordinator。 
 	全局协调完成两相通过启动以下阶段提交：
-	- 准备阶段：全局协调请求所涉及的分布式事务的其他数据库，以确认它们可以提交或回滚事务，即使有一个发生故障。如果有任何数据库无法完成准备阶段，那么事务回滚。
-	- 提交阶段：如果所有其他数据库的通知，他们正在准备的全局协调人，那么全局协调人提交事务，并要求所有其他数据库提交事务。
-	```
+		- 准备阶段：全局协调请求所涉及的分布式事务的其他数据库，以确认它们可以提交或回滚事务，即使有一个发生故障。如果有任何数据库无法完成准备阶段，那么事务回滚。
+		- 提交阶段：如果所有其他数据库的通知，他们正在准备的全局协调人，那么全局协调人提交事务，并要求所有其他数据库提交事务。
 
 	- About Synonyms and Location Transparency
 
@@ -94,15 +94,14 @@ Federation leaves信息仍然在原来的位置，在那里它被保持和更新
 		同义词隐藏应用程序和用户数据库对象的位置。 如果数据库对象必须被移动或重命名，则可以重新定义同义词，应用程序和用户可以继续使用同义词无需做任何修改。
 		
 	- About Accessing and Modifying Information in Non-Oracle Databases	
-		```
+	
 		您可以在Oracle数据库中非Oracle数据库的federate data使用分布式SQL。
 		Oracle数据库Gateway使Oracle数据库访问和修改一些非Oracle数据库的数据，包括Sybase，DB2，Informix和Microsoft SQL Server的，Ingres，和Teradata数据库。 
 		这种访问对最终用户是完全透明的。 
 		也就是说，你可以发出相同的SQL语句，无论您是在Oracle数据库或非Oracle数据库访问数据。
-		```
 		
 	- About Stored Procedures	
-		```
+
 		要在federated环境中进行复杂的操作时，为减少网络流量，您可以使用存储过程。 
 		procedure 或function是运行解决特定问题或执行一组相关任务的schema对象。 
 		通常，使用一个过程来执行操作，并且使用函数来计算值。 
@@ -115,7 +114,7 @@ Federation leaves信息仍然在原来的位置，在那里它被保持和更新
 		由于使用SQL语句，运行一个存储过程，你并不需要知道它的物理位置。
 		同样，通过使用相应的Oracle数据库Gateway，你甚至可以调用存储过程，在非Oracle数据库。 
 		在这种情况下，Gateway映射的PL/SQL调用非Oracle数据库存储的过程。
-		```
+
 * Preparing to Access and Modify Information in Multiple Oracle Databases
 
 准备
@@ -152,11 +151,9 @@ Federation leaves信息仍然在原来的位置，在那里它被保持和更新
 	Oracle Streams是Oracle数据库的连续复制的功能。
 
 	如果更改一个共享的数据库对象所做的，Oracle流执行以下操作，以确保相同的变化是在其它各个数据库到相应的共享数据库对象进行的：
-	```
-	- Oracle Streams automatically captures the change and stages it in a queue.
-	- Oracle Streams automatically pushes the change to a queue in each of the other databases that contain the shared database object.
-	- Oracle Streams automatically consumes the change at each of the other databases. During consumption, Oracle Streams dequeues the change and applies the change to the shared database object.
-	```
+		- Oracle Streams automatically captures the change and stages it in a queue.
+		- Oracle Streams automatically pushes the change to a queue in each of the other databases that contain the shared database object.
+		- Oracle Streams automatically consumes the change at each of the other databases. During consumption, Oracle Streams dequeues the change and applies the change to the shared database object.
 
 	![Images](http://docs.oracle.com/cd/E11882_01/server.112/e17516/img/tdpii022.gif)
 	
@@ -174,7 +171,7 @@ Federation leaves信息仍然在原来的位置，在那里它被保持和更新
 			- 一个可选的Oracle数据库后台进程异步捕获记录在重做日志的变化。
 			- Enqueuing: 是将消息放入队列的过程。
 			- 一个捕获过程中始终与单个队列相关联，并将排到的LCR放入队列。buffered queue
-			![Capture Process](http://docs.oracle.com/cd/E11882_01/server.112/e17516/img/tdpii012.gif)
+			![Images](http://docs.oracle.com/cd/E11882_01/server.112/e17516/img/tdpii012.gif)
 			- local capture process: 在源数据库上执行的捕捉过程
 				- 容易配置和管理
 				- 可适用于不同平台
