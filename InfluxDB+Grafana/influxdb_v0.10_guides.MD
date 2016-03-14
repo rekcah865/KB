@@ -133,7 +133,7 @@
 	- 目的：最佳的定期向下取样数据，而不需要简单或普通的查询，InfluxDB将存储结果以备后面使用
 	- 工作：[创建和管理CQs](https://docs.influxdata.com/influxdb/v0.10/query_language/continuous_queries/)
 	
-* 结果RPs和CQs - 学习案例
+* 结合RPs和CQs - 学习案例
 
 	```
 	每10秒钟来自电话或网站关于餐厅食品追踪的实时数据  
@@ -158,6 +158,7 @@
 		> CREATE CONTINUOUS QUERY cq_30m ON food_data BEGIN SELECT mean(website) AS mean_website,mean(phone) AS mean_phone INTO food_data."default".downsampled_orders FROM orders GROUP BY time(30m) END
 		```
 	- 写/查看数据
+	
 		```
 		> SELECT * FROM orders LIMIT 5
 		name: orders
@@ -168,8 +169,7 @@
 		2015-12-04T20:00:30Z		2	     17
 		2015-12-04T20:00:40Z		3	     10
 		2015-12-04T20:00:50Z		1	     15
-		```
-		```
+				
 		> SELECT * FROM food_data."default".downsampled_orders LIMIT 5
 		name: downsampled_orders
 		------------------------
@@ -179,6 +179,7 @@
 		2015-12-03T23:30:00Z	 4.766666666666667	 9.677777777777777
 		2015-12-04T00:00:00Z	 4.405555555555556	 8.5
 		2015-12-04T00:30:00Z	 4.788888888888889	 9.383333333333333
+		
 		```
 
 ### Hardware Sizing Guidelines
