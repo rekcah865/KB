@@ -15,7 +15,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	- 3个概念: Free pool, policy-managed database, administrator-managed database
 * 关于Oracle ASM
 	- ASM是一个集成的、高性能的卷管理器和文件系统
-	- 自11gR2，ASM增加了对Oracle OCR(集群注册表)和Voting disks(表决磁盘)，被称为Oracle ACFS
+	- 自11gR2，ASM增加了对Oracle OCR(集群注册表)和Voting disks，被称为Oracle ACFS
 	- 好处：条带化、冗余、在线存储重配置和动态再平衡、管理文件创建和删除
 * 关于Oracle RAC
 	- RAC扩展Oracle数据库，以至于你可以在不同服务器上对数据同时进行存取、更新和有效查询
@@ -193,7 +193,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 
 ####5 Administering Oracle Clusterware Components
 
-本章主要描述如何管理表决磁盘(Voting Disks)和Oracle集群注册表(OCR)
+本章主要描述如何管理Voting Disks和Oracle集群注册表(OCR)
 
 * 关于Oracle Clusterware
 
@@ -203,20 +203,20 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 
 	Oracle集群包括用于管理群集上运行的任何应用程序的高可用性架构。 
 	Oracle集群件还监视应用程序以确保它们始终可用。 
-	- 关于表决磁盘
+	- 关于voting disks
 		
-		表决磁盘记录节点成员的信息。
-		一个节点必须能够在任何时候访问一半以上的表决磁盘。
-		为避免多组表决磁盘的同时的损失，每个表决磁盘应该不要跟其它表决磁盘共享存储任何组件（控制器，互连等）。
+		voting disks记录节点成员的信息。
+		一个节点必须能够在任何时候访问一半以上的voting disks。
+		为避免多组voting disks的同时的损失，每个voting disks应该不要跟其它voting disks共享存储任何组件（控制器，互连等）。
 
-		例如，如果你已经配置了五个表决磁盘，则节点必须能够在任何时候访问至少有三个表决磁盘。
-		如果一个节点不能访问表决磁盘的所需的最低数目，那么它从集群中被evicted(逐出)或removed。
-		该故障的原因已得到纠正，并获得了表决磁盘已恢复后，你可以指示Oracle集群恢复失败的节点，并将其恢复到集群。
+		例如，如果你已经配置了五个voting disks，则节点必须能够在任何时候访问至少有三个voting disks。
+		如果一个节点不能访问voting disks的所需的最低数目，那么它从集群中被evicted(逐出)或removed。
+		该故障的原因已得到纠正，并获得了voting disks已恢复后，你可以指示Oracle集群恢复失败的节点，并将其恢复到集群。
 	- 关于Oracle集群注册表
 
 		Oracle集群注册表（OCR）是一个包含有关群集节点列表和实例到节点的映射信息的信息的文件。
 		OCR还包含您已经自定义资源Oracle集群资源配置文件的信息。
-		表决磁盘的数据也被OCR备份。
+		voting disks的数据也被OCR备份。
 
 		集群中的每个节点也有OCR的本地副本，称为Oracle本地注册表（OLR），安装Oracle集群时创建。
 		每个节点上的多个进程同时具有读取和写入它们所在的节点上的OLR，用来知道Oracle集群件是否功能齐全。
@@ -229,20 +229,150 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 		但是，如果灾难发生，或者大规模硬件发生故障时，则有冗余组件可能是不够的。
 		为了充分保护您的系统拥有你的重要文件的备份是非常重要的。
 
-		Oracle集群件安装过程中在共享存储创建表决磁盘和OCR。
+		Oracle集群件安装过程中在共享存储创建voting disks和OCR。
 		如果在安装过程中选择normal冗余副本的选项，然后Oracle集群自动维护这些文件的冗余副本，以防止成为单点故障的文件。
 		normal冗余功能还省去了第三方存储冗余解决方案的需求。
-		当您使用normal冗余，Oracle集群自动保持OCR文件的两个副本和表决磁盘文件的三个副本。
+		当您使用normal冗余，Oracle集群自动保持OCR文件的两个副本和voting disks文件的三个副本。
 		
 * 管理Oracle Clusterware Stack
 
-* 管理Oracle集群的表决磁盘
+	默认情况下，Oracle集群服务器被配置restart。
+	但在一定的维护操作是，您可能会被要求停止或手动启动Oracle Clusterware Stack(集群堆栈)。
 
+	- 启动Oracle集群件
+	
+		您可以使用CRSCTL工具来管理Oracle集群。
+		如果Oracle高可用性服务守护程序（OHASD）是所有群集节点上运行，那么你可以通过执行以下命令来启动整个Oracle集群堆栈（全部由Oracle集群件管理的流程和资源），在所有节点上的集群中任何节点上执行如下命令：
+		```
+		crsctl start cluster -all
+		```
+		您可以通过使用-n选项(节点名称的空格分隔列表)，例如在启动特定节点Oracle集群堆栈(确保OHASD进程是运行的)：
+		```
+		crsctl start cluster -n racnode1 racnode4
+		```
+		要在一个节点上启动整个Oracle集群堆叠，包括OHASD过程中，该节点上运行以下命令：
+		```
+		crsctl start crs
+		```
+	- 停止Oracle集群
+	
+		要停止集群中的所有节点上的Oracle集群，任何节点上执行以下命令：
+		```
+		crsctl stop cluster -all
+		```
+		上面的命令停止由Oracle集群件/Oracle ASM实例管理的资源及所有的Oracle集群进程（除了OHASD及其相关进程）。
+
+		要停止Oracle Clusterware和Oracle ASM上选择的节点，包括-n选项(后面跟节点名称的空格分隔列表)，例如：
+		```
+		crsctl stop cluster -n racnode1 racnode3
+		```
+		如果不包括-all或-n选项，则Oracle集群件和其管理的资源只在您执行命令的节点上停下来。
+
+		要完全关闭整个Oracle集群堆栈，包括OHASD进程，使用*crsctl stop crs*命令。 
+		CRSCTL试图在Oracle Clusterware Stack的停机期间正常有序的停止Oracle集群管理的资源。
+		如果Oracle集群件管理的任何资源执行*crsctl stop crs*命令后仍在运行，则该命令将失败。
+		然后，您必须使用-f选项无条件地停止所有资源并停止Oracle Clusterware Stack，例如：
+		```
+		crsctl stop crs -f
+		```
+
+* 管理Oracle集群的voting disks
+
+	- 添加和删除voting disks
+		
+		如果您选择在Oracle ASM(并使用冗余磁盘组)存储Oracle集群文件，
+		则Oracle ASM基于磁盘组的冗余数目自动维护voting disks的数目。
+
+		如果您使用不同形式的共享存储来存储voting disks，那么你就可以在安装Oracle RAC后动态地添加和删除voting disks。
+		为此可以使用下面的命令，其中path是附加的voting disks的完全qualified路径。
+		```
+		crsctl add css votedisk path
+		
+		crsctl delete css votedisk path
+		```
+	
+	- 备份和恢复voting disks
+	
+		- Backing Up Voting Disks
+			在Oracle Clusterware 11.2，你不再需要备份voting disks。
+			voting disks数据自动备份作为OCR任何配置更改的一部分。
+			如果文件的内容在以下几个方面发生了变化是Oracle Clusterware降自动备份voting disks文件：
+				- Configuration parameters， 例如miscount被增加或修改
+				- 在执行voting disks add或者delete操作
+				
+		- Replacing Voting Disks
+			如果表决磁盘损坏，不需要再使用Oracle集群件，那么你就可以更换或重新创建表决磁盘。
+			您可以通过删除无用表决磁盘，然后添加新的表决磁盘配置更换表决磁盘。
+			不管表决磁盘文件是存储在ASM，表决磁盘内容从备份恢复作为新增加的表决文件。
+			```
+			crsctl delete css votedisk /dev/sda3
+			
+			crsctl add css votedisk /dev/sda3
+			```
+		- Restoring Voting Disks
+			如果所有表决磁盘损坏，你可以通过参考[Oracle Clusterware Administration and Deployment Guide](http://docs.oracle.com/cd/E11882_01/rac.112/e41959/votocr.htm#CWADD90961)进行回复
+			
+	- 迁移voting disks到Oracle ASM存储
+		...
+	
 * 备份和恢复的Oracle集群注册表
 
+	Oracle集群每四个小时自动创建备份OCR。
+	在任何时候，Oracle集群始终保留最近的三个OCR备份副本(四小时前，一天前，一周前）。
+	
+	您不能自定义备份的频率或Oracle集群保留的文件数量。
+	您可以使用任何备份软件，至少每天一次从其中主OCR文件复制并自动生成备份文件到不同的设备。
+	
+	- 查看可用的备份OCR
+		```
+		ocrconfig -showbackup
+		```
+	- 手动备份OCR
+		使用ocrconfig实用程序来强制Oracle集群随时执行OCR的备份，而不是等到发生在四小时的时间间隔自动备份。
+		您可以基于需求更改OCR前的二进制备份，此选项是非常有用的。
+		```
+		# ocrconfig -manualbackup
+		# ocrconfig -backuploc <directory_name?
+		```
+		默认Linux系统备份的目录 Grid_home/cdata/cluster_name。
+		因为默认的备份是在本地文件系统上，Oracle建议您包括与ocrconfig命令使用标准操作系统或第三方工具操作系统备份的一部分创建的备份文件。
+				
+	- 恢复OCR
+		有两种方法用于恢复OCR。第一种方法使用自动生成的OCR文件副本和第二种方法使用手动创建OCR导出文件。
+		- 检查OCR的状态
+		```
+		ocrcheck
+		```
+		- 利用自动生成的OCR备份恢复OCR
+		```
+		# ocrconfig -showbackup
+		# ocrdump ocr_dump_output_file -backupfile file_name
+		# crsctl stop cluster -all
+		# ocrconfig -restore file_name
+		# crsctl start cluster -all
+		
+		# cluvfy comp ocr -n all [-verbose]
+		```
+		
 * 更改Oracle集群注册表配置
+	
+	本节将介绍如何管理OCR。
+	OCR包含有关已修改为Oracle集群管理的群集节点列表，其中实例哪个节点上运行，以及有关Oracle集群资源配置文件应用程序的信息
+	
+	- 添加一个OCR位置
+	- 迁移OCR到Oracle ASM存储
+	- 更换OCR
+	- 移除OCR
+	- 在本地节点上修复OCR配置
+	...
+	
 * Oracle集群注册表故障排除
 
+	- 关于OCRCHECK工具
+	...
+	- 常见的Oracle集群注册表的问题与对策
+	...
+	
 ####6 Administering Backup and Recovery
 ####7 Managing Database Workload Using Services
 ####8 Monitoring Performance and Troubleshooting 
