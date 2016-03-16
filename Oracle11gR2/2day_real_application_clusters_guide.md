@@ -144,16 +144,34 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	- 有关配置初始化参数的Oracle RAC数据库
 		初始化参数文件(pfile)和服务器参数文件(spfile)
 		- 所有实例必须相同的参数
-			CLUSTER_DATABASE COMPATIBLE CONTROL_FILES DB_BLOCK_SIZE DB_DOMAIN DB_FILES DB_NAME 
-			DB_RECOVERY_FILE_DEST DB_RECOVERY_FILE_DEST_SIZE DB_UNIQUE_NAME DML_LOCKS(0) INSTANCE_TYPE(RDBMS/ASM) 
-			PARALLEL_EXECUTION_MESSAGE_SIZE REMOTE_LOGIN_PASSWORDFILE RESULT_CACHE_MAX_SIZE UNDO_MANAGEMENT
+			CLUSTER_DATABASE 
+			COMPATIBLE 
+			CONTROL_FILES 
+			DB_BLOCK_SIZE 
+			DB_DOMAIN 
+			DB_FILES 
+			DB_NAME 
+			DB_RECOVERY_FILE_DEST 
+			DB_RECOVERY_FILE_DEST_SIZE 
+			DB_UNIQUE_NAME DML_LOCKS(0) 
+			INSTANCE_TYPE(RDBMS/ASM) 
+			PARALLEL_EXECUTION_MESSAGE_SIZE 
+			REMOTE_LOGIN_PASSWORDFILE 
+			RESULT_CACHE_MAX_SIZE 
+			UNDO_MANAGEMENT
 		- 所有实例必须唯一的参数
-			CLUSTER_INTERCONNECTS INSTANCE_NUMBER
-			ROLLBACK_SEGMENTS(AUTO) UNDO_TABLESPACE(AUTO)			
+			CLUSTER_INTERCONNECTS 
+			INSTANCE_NUMBER
+			ROLLBACK_SEGMENTS(AUTO) 
+			UNDO_TABLESPACE(AUTO)			
 		- 所有实例应该相同的参数
-			ARCHIVE_LAG_TARGET CONTROL_MANAGEMENT_PACK_ACCESS DIAGNOSTIC_DEST
-			LICENSE_MAX_USERS LOG_ARCHIVE_FORMAT REDO_TRANSPORT_USER
-			SPFILE TRACE_ENABLED UNDO_RETENTION
+			ARCHIVE_LAG_TARGET 
+			CONTROL_MANAGEMENT_PACK_ACCESS DIAGNOSTIC_DEST
+			LICENSE_MAX_USERS 
+			LOG_ARCHIVE_FORMAT 
+			REDO_TRANSPORT_USER
+			SPFILE 
+			TRACE_ENABLED UNDO_RETENTION
 		- 关于SERVICE_NAMES参数
 			- 指定客户端可以连接到该实例的一个或多个名称，实例对于监听器注册其服务
 			- RAC数据库不应该直接修改此参数，可用EM或SRVCTL更改服务（自动生效)
@@ -174,6 +192,57 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	...
 
 ####5 Administering Oracle Clusterware Components
+
+本章主要描述如何管理表决磁盘(Voting Disks)和Oracle集群注册表(OCR)
+
+* 关于Oracle Clusterware
+
+	Oracle RAC使用Oracle Clusterware作为基础设置结合多个节点那然后作为单个服务器进行操。 
+	在Oracle RAC环境中， Oracle集群监控所有Oracle组件（如instance和listener）。
+	如果发生故障，那么Oracle集群件自动尝试重新启动有故障的组件和重定向到正常的组件。
+
+	Oracle集群包括用于管理群集上运行的任何应用程序的高可用性架构。 
+	Oracle集群件还监视应用程序以确保它们始终可用。 
+	- 关于表决磁盘
+		
+		表决磁盘记录节点成员的信息。
+		一个节点必须能够在任何时候访问一半以上的表决磁盘。
+		为避免多组表决磁盘的同时的损失，每个表决磁盘应该不要跟其它表决磁盘共享存储任何组件（控制器，互连等）。
+
+		例如，如果你已经配置了五个表决磁盘，则节点必须能够在任何时候访问至少有三个表决磁盘。
+		如果一个节点不能访问表决磁盘的所需的最低数目，那么它从集群中被evicted(逐出)或removed。
+		该故障的原因已得到纠正，并获得了表决磁盘已恢复后，你可以指示Oracle集群恢复失败的节点，并将其恢复到集群。
+	- 关于Oracle集群注册表
+
+		Oracle集群注册表（OCR）是一个包含有关群集节点列表和实例到节点的映射信息的信息的文件。
+		OCR还包含您已经自定义资源Oracle集群资源配置文件的信息。
+		表决磁盘的数据也被OCR备份。
+
+		集群中的每个节点也有OCR的本地副本，称为Oracle本地注册表（OLR），安装Oracle集群时创建。
+		每个节点上的多个进程同时具有读取和写入它们所在的节点上的OLR，用来知道Oracle集群件是否功能齐全。
+		默认情况下OLR - Grid_home/cdata/$HOSTNAME.olr
+		
+	- 关于Oracle集群文件的高可用性	
+		
+		高可用性配置通过避免单点故障以维持运营时的硬件和软件冗余。
+		当一个组件发生故障，Oracle集群重定向其管理的资源到冗余组件。
+		但是，如果灾难发生，或者大规模硬件发生故障时，则有冗余组件可能是不够的。
+		为了充分保护您的系统拥有你的重要文件的备份是非常重要的。
+
+		Oracle集群件安装过程中在共享存储创建表决磁盘和OCR。
+		如果在安装过程中选择normal冗余副本的选项，然后Oracle集群自动维护这些文件的冗余副本，以防止成为单点故障的文件。
+		normal冗余功能还省去了第三方存储冗余解决方案的需求。
+		当您使用normal冗余，Oracle集群自动保持OCR文件的两个副本和表决磁盘文件的三个副本。
+		
+* 管理Oracle Clusterware Stack
+
+* 管理Oracle集群的表决磁盘
+
+* 备份和恢复的Oracle集群注册表
+
+* 更改Oracle集群注册表配置
+* Oracle集群注册表故障排除
+
 ####6 Administering Backup and Recovery
 ####7 Managing Database Workload Using Services
 ####8 Monitoring Performance and Troubleshooting 
