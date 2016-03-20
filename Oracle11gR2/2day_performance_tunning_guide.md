@@ -7,38 +7,49 @@
 
 ####1 Introduction  
       
-      优化数据库工具：Oracle企业版、OEM、Oracle Diagnostics Pack(AWR,ADDM,ASH)、
-      Oracle Database Tuning Pack(SQL Tuning Advisor,SQL Access Advisor)、
-      Oracle Real Application Testing(Database Replay, SQL Performance Analyzer)
-      
-      
+优化数据库工具：
+	- Oracle企业版、OEM、
+	- Oracle Diagnostics Pack(AWR,ADDM,ASH)、
+    - Oracle Database Tuning Pack(SQL Tuning Advisor,SQL Access Advisor)、
+    - Oracle Real Application Testing(Database Replay, SQL Performance Analyzer)
+         
 ####2 Oracle Database Performance Method  
       
-	  bottleneck, throughput, response time
-      AWR收集统计信息
-      - 2个参数：STATISTICS_LEVEL, CONTROL_MANAGEMENT_PACK_ACCESS
-      - 5个统计信息：Time Model, Wait Event, Session and System, Active Session History, High-Load SQL
+* bottleneck, throughput, response time
+* AWR收集统计信息
+	- 2个参数：
+	
+		- STATISTICS_LEVEL
+		- CONTROL_MANAGEMENT_PACK_ACCESS
+		
+	- 5个统计信息：
+	
+		- Time Model
+		- Wait Event
+		- Session and System
+		- Active Session History
+		- High-Load SQL
       
-      性能优化方法
-	  - Performing pre-tuning preparations
-	  - Tuning the database proactively on a regular basis
-	  - Tuning the database reactively when performance problems are reported by the users
-	  - Identifying, tuning, and optimizing high-load SQL statements
+* 性能优化方法
+
+	- Performing pre-tuning preparations
+	- Tuning the database proactively on a regular basis
+	- Tuning the database reactively when performance problems are reported by the users
+	- Identifying, tuning, and optimizing high-load SQL statements
       
-      常见的性能问题
-      - CPU bottlenecks
-      - Undersized memory structures
-      - I/O capacity issues
-      - Suboptimal use of Oracle Database by the application
-      - Concurrency issues
-	  - Database configuration issues
-	  - Short-lived performance problems
-	  - Degradation of database performance over time
-	  - Inefficient or high-load SQL statements
-	  - Object contention
-	  - Unexpected performance regression after tuning SQL statements
-      
-      
+* 常见的性能问题
+	- CPU bottlenecks
+	- Undersized memory structures
+	- I/O capacity issues
+	- Suboptimal use of Oracle Database by the application
+	- Concurrency issues
+	- Database configuration issues
+	- Short-lived performance problems
+	- Degradation of database performance over time
+	- Inefficient or high-load SQL statements
+	- Object contention
+	- Unexpected performance regression after tuning SQL statements
+ 
 ###Part II Proactive Database Tuning  
     
 ####3 Automatic Database Performance Monitoring  
@@ -77,7 +88,9 @@
 
 		除了诊断性能问题，ADDM建议可能的解决方案。
 		在适当的时候，ADDM建议多个解决方案供您选择。 
+		
 		ADDM建议包括以下内容：
+		
 			- 硬件更改
 			- 添加CPU或更改I/O子系统配置
 			- 数据库配置
@@ -146,6 +159,7 @@
 * Interpretation of Automatic Database Diagnostic Monitor Findings
 
 	ADDM的分析结果表示为一组结果。每个ADDM发现属于三种类型之一：
+	
 		- Problem 描述数据库性能问题的根本原因的Findings 
 		- Symptom 包含往往导致的一个或多个问题的发现信息的Findings 
 		- Information 被用来报告系统区域的发现，即不具有性能影响
@@ -178,6 +192,43 @@
 	![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/snapshot_det.gif)
 	
 ####4 Monitoring Real-Time Database Performance  
+
+Oracle企业管理器（Enterprise Manager）Performance页面显示三个部分，你可以用它来实时评估数据库的整体性能信息。
+
+![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/db_perf.gif)
+
+通常情况下，你应该使用自动数据库诊断监视器（ADDM）的自动诊断功能来确定性能问题与数据库，
+在某些情况下，你可能要实时监控数据库的性能，因为它们发生来确定性能问题。
+例如，ADDM执行每个自动负载信息库（AWR）快照，默认情况下是每隔一小时后的分析。
+然而，如果你注意到在性能页面上的数据库活动突然出现大幅波动，那么你可能要在下一个ADDM分析案发前调查它。
+
+通过从性能页面向下钻取到其他页面，你可以实时识别数据库的性能问题。
+如果你发现一个问题，这时你可以手动运行ADDM立即对其进行分析，而不必等到下一个ADDM分析。
+
+The Average Active Sessions chart of the Performance page显示了数据库上的平均负载。
+一段时间(总共DB Time --- )的平均活动会话。
+
+	- Monitoring Top SQL
+	- Monitoring Top Sessions"
+	- Monitoring Top Services"
+	- Monitoring Top Modules"
+	- Monitoring Top Actions"
+	- Monitoring Top Clients"
+	- Monitoring Top PL/SQL"
+	- Monitoring Top Files"
+	- Monitoring Top Objects"
+
+* Monitoring User Activity
+
+* Monitoring Instance Activity
+
+* Monitoring Host Activity
+
+* Determining the Cause of Spikes in Database Activity
+
+* Customizing the Database Performance Page
+
+
 ####5 Monitoring Performance Alerts  
       
 ###Part III Reactive Database Tuning  
