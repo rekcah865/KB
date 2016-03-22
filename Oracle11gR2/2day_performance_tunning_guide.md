@@ -6,13 +6,13 @@
 ###Part I Getting Started  
 
 ####1 Introduction  
-      
-优化数据库工具：
+ 
+* 优化数据库工具：
 	- Oracle企业版、OEM、
 	- Oracle Diagnostics Pack(AWR,ADDM,ASH)、
     - Oracle Database Tuning Pack(SQL Tuning Advisor,SQL Access Advisor)、
     - Oracle Real Application Testing(Database Replay, SQL Performance Analyzer)
-         
+
 ####2 Oracle Database Performance Method  
       
 * bottleneck, throughput, response time
@@ -89,8 +89,7 @@
 		除了诊断性能问题，ADDM建议可能的解决方案。
 		在适当的时候，ADDM建议多个解决方案供您选择。 
 		
-		ADDM建议包括以下内容：
-		
+		ADDM建议包括以下内容：		
 			- 硬件更改
 			- 添加CPU或更改I/O子系统配置
 			- 数据库配置
@@ -125,7 +124,6 @@
 
 		设置STATISTICS_LEVEL为TYPICAL（默认）或ALL以启用自动数据库诊断监控。
 		设置STATISTICS_LEVEL为BASIC禁用许多Oracle数据库特性（包括ADDM）-不被推荐。
-
 
 	- 设置DBIO_EXPECTED参数
 
@@ -208,28 +206,54 @@ Oracle企业管理器（Enterprise Manager）Performance页面显示三个部分
 The Average Active Sessions chart of the Performance page显示了数据库上的平均负载。
 一段时间(总共DB Time --- )的平均活动会话。
 
-	- Monitoring Top SQL
-	- Monitoring Top Sessions"
-	- Monitoring Top Services"
-	- Monitoring Top Modules"
-	- Monitoring Top Actions"
-	- Monitoring Top Clients"
-	- Monitoring Top PL/SQL"
-	- Monitoring Top Files"
-	- Monitoring Top Objects"
 
 * Monitoring User Activity
 
+
+	- Monitoring Top SQL
+	- Monitoring Top Sessions
+	- Monitoring Top Services
+	- Monitoring Top Modules
+	- Monitoring Top Actions
+	- Monitoring Top Clients
+	- Monitoring Top PL/SQL
+	- Monitoring Top Files
+	- Monitoring Top Objects
+	
 * Monitoring Instance Activity
 
+	- Monitoring Throughput
+		![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/through_per_sec.gif)
+	- Monitoring I/O
+		- Monitoring I/O by Function
+			![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/io_function.gif)
+		- Monitoring I/O by Type
+			![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/perf_io_type.gif)
+		- Monitoring I/O by Consumer Group
+			![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/perf_io_consum.gif)
+	- Monitoring Parallel Execution
+		![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/pe.gif)
+	- Monitoring Services
+		![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/services.gif)
+		
 * Monitoring Host Activity
 
-* Determining the Cause of Spikes in Database Activity
+	![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/host_cpu.gif) -> "Load"
+	
+	- Monitoring CPU Utilization
+	- Monitoring Memory Utilization
+	- Monitoring Disk I/O Utilization
+
+	![Images](http://docs.oracle.com/cd/E11882_01/server.112/e10822/img/perf_summ.gif)
+	
+* Determining the Cause of Spikes(秒杀) in Database Activity
+
 
 * Customizing the Database Performance Page
 
-
 ####5 Monitoring Performance Alerts  
+
+
       
 ###Part III Reactive Database Tuning  
 
