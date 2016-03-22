@@ -411,6 +411,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	
 	快速恢复面积越大，用处就越大。
 	理想情况下，快速恢复面积应足够大，以包含所有以下文件：
+	
 		- A copy of all data files
 		- Incremental backups
 		- Online redo logs
@@ -455,7 +456,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	根据节点的数量和环境的复杂性及你的目标，最佳工作负载管理和高可用性配置选择取决于多种因素，如本章所述。
 
 	要实现一个Oracle RAC数据库工作负载管理，可以使用许多不同的特点。
-	- About Oracle Services
+	- About Oracle Services  
 		Oracle数据库10g引入了自动工作负载管理工具，名为数据库服务。
 		数据库服务（services）是Oracle数据库工作负载管理逻辑抽象。
 		服务工作负载划分成互不相交的分组。
@@ -466,6 +467,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 		单个服务可以与Oracle RAC数据库的一个或多个实例相关联，而且一个单一的实例可以支持多个服务。
 		
 		服务提供以下好处：
+		
 			- 管理对于相同的资源竞争的应用程序可作为一个单一实体
 			- 允许每个工作负荷被管理作为一个单元
 			- 从客户端来看可以隐藏集群的复杂性
@@ -483,6 +485,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 		对于使用数据库工作负载的管理更灵活的Oracle数据库，您可以创建多项服务，并指定数据库实例提供的服务。
 		
 		您可以为policy-managed和 administrator-managed数据库中定义的服务。
+		
 			- Policy-managed数据库：当您定义服务时，在正在运行的数据库中您可以指定一个服务器池的服务。您可以定义为既统一（在服务器池中的所有实例上运行）或单个（在服务器池中只运行一个实例）的服务。
 			- Administrator-managed数据库：当您定义服务时，您可以定义哪些实例通常支持哪些service.这些被称为PREFERRED实例。如果preferred(首选)实例无法支持服务您也可以定义其他实例。这些被称为AVAILABLE实例。
 
@@ -527,10 +530,36 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 
 	- About the Database Resource Manager
 	
+		​​你可以用数据库资源管理器来控制分配给用户，应用程序和服务的数据库资源。
+		这种方法可以确保用户，应用程序和服务接收者共享现有的数据库资源。
+		数据库资源管理器，在一个或多个节点上运行，使Oracle RAC数据库最佳效率的支持多种应用程序和混合工作负载。
+		
+		数据库资源管理器为Oracle数据库或RAC环境中提供了工作优先级的能力。
+		资源基于由数据库管理员所指定的资源计划分配给用户。
+		下列术语在指定资源计划用于：
+		
+			- resource plan
+			- Resource consumer groups
+			- Resource allocation methods
+			- Resource plan directives
+			- Subplans
+			- Levels
+			
+		数据库资源管理器让您可以将资源使用者组映射到一个服务，让连接使用该服务的用户是指定的资源消费群的成员，因而可以限制resource consumer group的可用资源。
+
+		
 	- About Oracle RAC High Availability Framework
 	
+		Oracle RAC的高可用性架构使Oracle RAC维护数据库，组件和应用程序始终处于运行状态。
+		如果一个实例，组件或应用程序出现故障，那么它可以自动重新启动，以保持Oracle数据库满能力运行。
+
+		Oracle数据库侧重于保持服务的可用性。
+		在Oracle RAC，Oracle服务设计为跨越一个或多个实例的共享工作负载持续可用。
+		在Oracle RAC的高可用性架构通过存储在Oracle集群注册表（OCR）每个服务的配置信息保持服务的可用性。 Oracle集群根据服务定义跨实例恢复和balance服务。
+
 	- About Fast Application Notification (FAN)
 	
+		
 	- About FAN Callouts
 	
 	- About the Load Balancing Advisory
@@ -538,6 +567,7 @@ Oracle RAC使Oracle数据库可以跨服务器集群上运行，在应用程序�
 	- About Connection Load Balancing
 	
 	- About Run-time Connection Load Balancing
+	
 * 创建服务
 
 * 管理服务
