@@ -79,9 +79,3 @@
 * 2 CSS
 * 3 Javascript
 * 
-
-### 快速入门系列
-* 1 Docker
-* 2 Zabbix
-* 3 Virtualbox
-* 4 SQLite
