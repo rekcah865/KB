@@ -49,8 +49,9 @@
 * 10 HA
 
 ### Unix/Linux系统管理
-* 1 
-* 
+* 1 RHEL6
+* 2 AIX6
+* 3 OEL7
 
 ### Shell编程
 * 1 ksh
@@ -70,6 +71,7 @@
 ###　工具使用
 * 1 Markdown
 * 2 Excel
+* 3 Batch
 * 
 
 ### 前端
